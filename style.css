@@ -126,12 +126,8 @@ td:last-child {
 }
 #backgrounds {
     display: flex;
-    /* gap: 20px; */
     grid-template-areas: "main aside";    
     grid-template-columns: 2fr 1fr;
-}
-#backgrounds main::-webkit-scrollbar {
-    /* display: none; */
 }
 #backgrounds main {
     -ms-overflow-style: none;
@@ -142,7 +138,6 @@ td:last-child {
     grid-template-columns: 1fr 1fr;
     height: 439px;
     overflow: auto;
-    /* scrollbar-width: none; */
 }
 #backgrounds main button {
     background: none;
@@ -162,13 +157,6 @@ td:last-child {
 #previewBackground h3 {
     color: rgb(180, 24, 7);
 }
-/* #skills {
-    display: grid;
-    gap: 20px;
-    grid-template-areas: "main aside";
-    grid-template-columns: 2fr 1fr;
-} */
-
 .assigned {
     filter: opacity(1);
 }
@@ -182,7 +170,7 @@ td:last-child {
 }
 .heading {
     grid-area: heading;
-    text-align: left;
+    text-align: center;
 }
 .lds-wrapper {
     align-items: center;
@@ -289,15 +277,9 @@ td:last-child {
     #backgrounds main {
         width: 100%;
     }
-    /* .windowLink {
-        flex-direction: column;
-    } */
     footer {
         grid-template-areas: "summary summary" "totals totals";
     }
-    /* main {
-        grid-template-areas: "tab tab" "tabcontent tabcontent";
-    } */
 }
 @media (max-width: 600px) {
     .heading{
@@ -306,12 +288,6 @@ td:last-child {
     .windowContent{
         grid-template-areas: "main main" "aside aside";
     }
-    /* #backgrounds {
-        grid-template-areas: "main main" "aside aside";
-    }
-    #skills {
-        grid-template-areas: "main main" "aside aside";
-    } */
     footer {
         grid-template-areas: "summary summary" "totals totals";
     }
