@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="script.js"></script>
+    <title>Homefront: The Revolution Resistance Mode Skill Tree Calculator</title>
+</head>
+<body>
+    <div class="lds-wrapper">
+        <div class="lds-dual-ring"></div>
+    </div>
+    <header>
+        <button class="windowLink" onclick="character.openWindow(event, 'backgrounds')" id="defaultOpen">Backgrounds</button>
+        <button class="windowLink" onclick="character.openWindow(event, 'skills')">Skills</button>
+    </header>
+    <div class="windowContent">
+        <div id="backgrounds">
+            <main>
+                <button id="Cosplayer" class="backgroundButton" onclick="character.previewBackground('Cosplayer')" ondblclick="character.assignBackground('Cosplayer')">Cosplayer</button>
+                <button id="Timesplitter" class="backgroundButton" onclick="character.previewBackground('Timesplitter')" ondblclick="character.assignBackground('Timesplitter')">Timesplitter</button>
+                <button id="Student" onclick="character.previewBackground('Student')" ondblclick="character.assignBackground('Student')">Student</button>
+                <button id="Gamer" onclick="character.previewBackground('Gamer')" ondblclick="character.assignBackground('Gamer')">Gamer</button>
+                <button id="Prepper" onclick="character.previewBackground('Prepper')" ondblclick="character.assignBackground('Prepper')">Prepper</button>
+                <button id="Firefighter" onclick="character.previewBackground('Firefighter')" ondblclick="character.assignBackground('Firefighter')">Firefighter</button>
+                <button id="Revolutionary" onclick="character.previewBackground('Revolutionary')" ondblclick="character.assignBackground('Revolutionary')">Revolutionary</button>
+                <button id="G-Man" onclick="character.previewBackground('G-Man')" ondblclick="character.assignBackground('G-Man')">G-Man</button>
+                <button id="US Marshal" onclick="character.previewBackground('US Marshal')" ondblclick="character.assignBackground('US Marshal')">US Marshal</button>
+                <button id="ATF Agent" onclick="character.previewBackground('ATF Agent')" ondblclick="character.assignBackground('ATF Agent')">ATF Agent</button>
+                <button id="Personal Trainer" onclick="character.previewBackground('Personal Trainer')" ondblclick="character.assignBackground('Personal Trainer')">Personal Trainer</button>
+                <button id="Cab Driver" onclick="character.previewBackground('Cab Driver')" ondblclick="character.assignBackground('Cab Driver')">Cab Driver</button>
+                <button id="Stevedore" onclick="character.previewBackground('Stevedore')" ondblclick="character.assignBackground('Stevedore')">Stevedore</button>
+                <button id="Laborer" onclick="character.previewBackground('Laborer')" ondblclick="character.assignBackground('Laborer')">Laborer</button>
+                <button id="Baseball Player" onclick="character.previewBackground('Baseball Player')" ondblclick="character.assignBackground('Baseball Player')">Baseball Player</button>
+                <button id="Pharmacist" onclick="character.previewBackground('Pharmacist')" ondblclick="character.assignBackground('Pharmacist')">Pharmacist</button>
+                <button id="Exterminator" onclick="character.previewBackground('Exterminator')" ondblclick="character.assignBackground('Exterminator')">Exterminator</button>
+                <button id="Electrician" onclick="character.previewBackground('Electrician')" ondblclick="character.assignBackground('Electrician')">Electrician</button>
+                <button id="Gas Jockey" onclick="character.previewBackground('Gas Jockey')" ondblclick="character.assignBackground('Gas Jockey')">Gas Jockey</button>
+                <button id="Gangbanger" onclick="character.previewBackground('Gangbanger')" ondblclick="character.assignBackground('Gangbanger')">Gangbanger</button>
+                <button id="Auto Mechanic" onclick="character.previewBackground('Auto Mechanic')" ondblclick="character.assignBackground('Auto Mechanic')">Auto Mechanic</button>
+                <button id="Plumber" onclick="character.previewBackground('Plumber')" ondblclick="character.assignBackground('Plumber')">Plumber</button>
+                <button id="Postal Worker" onclick="character.previewBackground('Postal Worker')" ondblclick="character.assignBackground('Postal Worker')">Postal Worker</button>
+                <button id="Cage Fighter" onclick="character.previewBackground('Cage Fighter')" ondblclick="character.assignBackground('Cage Fighter')">Cage Fighter</button>
+                <button id="Lawyer" onclick="character.previewBackground('Lawyer')" ondblclick="character.assignBackground('Lawyer')">Lawyer</button>
+                <button id="Videogame Developer" onclick="character.previewBackground('Videogame Developer')" ondblclick="character.assignBackground('Videogame Developer')">Videogame Developer</button>
+                <button id="Dancer" onclick="character.previewBackground('Dancer')" ondblclick="character.assignBackground('Dancer')">Dancer</button>
+                <button id="Receptionist" onclick="character.previewBackground('Receptionist')" ondblclick="character.assignBackground('Receptionist')">Receptionist</button>
+                <button id="Meat Packer" onclick="character.previewBackground('Meat Packer')" ondblclick="character.assignBackground('Meat Packer')">Meat Packer</button>
+                <button id="Trauma Nurse" onclick="character.previewBackground('Trauma Nurse')" ondblclick="character.assignBackground('Trauma Nurse')">Trauma Nurse</button>
+                <button id="Personal Shopper" onclick="character.previewBackground('Personal Shopper')" ondblclick="character.assignBackground('Personal Shopper')">Personal Shopper</button>
+                <button id="Warehouse Picker" onclick="character.previewBackground('Warehouse Picker')" ondblclick="character.assignBackground('Warehouse Picker')">Warehouse Picker</button>
+                <button id="Drifter" onclick="character.previewBackground('Drifter')" ondblclick="character.assignBackground('Drifter')">Drifter</button>
+            </main>
+        </div>
+        <div id="skills">
+            <main>
+                <div class="tab">
+                    <button class="tabLink" onclick="character.openSkill(event, 'brains')" id="defaultOpen">Brains</button>
+                    <button class="tabLink" onclick="character.openSkill(event, 'brawn')">Brawn</button>
+                    <button class="tabLink" onclick="character.openSkill(event, 'fighter')">Fighter</button>
+                    <button class="tabLink" onclick="character.openSkill(event, 'survivor')">Survivor</button>
+                </div>
+                <div id="brains" class="tabContent">
+                    <div id="brains1" class="row">
+                        <h3 class="heading">Tier 1</h3>
+                        <div class="content">
+                            <img id="armorer" src="icons/brains/armorer.png" alt="armorer" onclick="character.previewSkill('armorer')" ondblclick="character.assignSkill('armorer')">
+                            <img id="technophile" src="icons/brains/technophile.png" alt="technophile" onclick="character.previewSkill('technophile')" ondblclick="character.assignSkill('technophile')">
+                            <img id="misdirection" src="icons/brains/misdirection.png" alt="misdirection" onclick="character.previewSkill('misdirection')" ondblclick="character.assignSkill('misdirection')">
+                            <img id="single_minded" src="icons/brains/single_minded.png" alt="single_minded" onclick="character.previewSkill('single_minded')" ondblclick="character.assignSkill('single_minded')">
+                            <img id="lifesaver" src="icons/brains/lifesaver.png" alt="lifesaver" onclick="character.previewSkill('lifesaver')" ondblclick="character.assignSkill('lifesaver')">
+                        </div>
+                    </div>
+                    <div id="brains2" class="row">
+                        <h3 class="heading locked">Tier 2</h3>
+                        <div class="content">
+                            <img id="tactical_awareness" src="icons/brains/tactical_awareness.png" alt="tactical_awareness" onclick="character.previewSkill('tactical_awareness')" ondblclick="character.assignSkill('tactical_awareness')">
+                            <img id="hacker" src="icons/brains/hacker.png" alt="hacker" onclick="character.previewSkill('hacker')" ondblclick="character.assignSkill('hacker')">
+                            <img id="healing_hands" src="icons/brains/healing_hands.png" alt="healing_hands" onclick="character.previewSkill('healing_hands')" ondblclick="character.assignSkill('healing_hands')">
+                        </div>
+                    </div>
+                    <div id="brains3" class="row">
+                        <h3 class="heading locked">Tier 3</h3>
+                        <div class="content">
+                            <img id="ingenious" src="icons/brains/ingenious.png" alt="ingenious" onclick="character.previewSkill('ingenious')" ondblclick="character.assignSkill('ingenious')">
+                            <img id="flammable" src="icons/brains/flammable.png" alt="flammable" onclick="character.previewSkill('flammable')" ondblclick="character.assignSkill('flammable')">
+                            <img id="demolitions_training" src="icons/brains/demolitions_training.png" alt="demolitions_training" onclick="character.previewSkill('demolitions_training')" ondblclick="character.assignSkill('demolitions_training')">
+                        </div>
+                    </div>
+                    <div id="brains4" class="row">
+                        <h3 class="heading locked">Tier 4</h3>
+                        <div class="content">
+                            <img id="paramedic" src="icons/brains/paramedic.png" alt="paramedic" onclick="character.previewSkill('paramedic')" ondblclick="character.assignSkill('paramedic')">
+                        </div>
+                    </div>
+                </div>
+                <div id="brawn" class="tabContent">
+                    <div id="brawn1" class="row">
+                        <h3 class="heading">Tier 1</h3>
+                        <div class="content">
+                            <img id="parkour" src="icons/brawn/parkour.png" alt="parkour" onclick="character.previewSkill('parkour')" ondblclick="character.assignSkill('parkour')">
+                            <img id="power_slide" src="icons/brawn/power_slide.png" alt="power_slide" onclick="character.previewSkill('power_slide')" ondblclick="character.assignSkill('power_slide')">
+                            <img id="tuck_&_roll" src="icons/brawn/tuck_&_roll.png" alt="tuck_&_roll" onclick="character.previewSkill('tuck_&_roll')" ondblclick="character.assignSkill('tuck_&_roll')">
+                            <img id="tough" src="icons/brawn/tough.png" alt="tough" onclick="character.previewSkill('tough')" ondblclick="character.assignSkill('tough')">
+                            <img id="knife_fighter" src="icons/brawn/knife_fighter.png" alt="knife_fighter" onclick="character.previewSkill('knife_fighter')" ondblclick="character.assignSkill('knife_fighter')">
+                            <img id="endurance" src="icons/brawn/endurance.png" alt="endurance" onclick="character.previewSkill('endurance')" ondblclick="character.assignSkill('endurance')">
+                        </div>
+                    </div>
+                    <div id="brawn2" class="row">
+                        <h3 class="heading locked">Tier 2</h3>
+                        <div class="content">
+                            <img id="tooled_up" src="icons/brawn/tooled_up.png" alt="tooled_up" onclick="character.previewSkill('tooled_up')" ondblclick="character.assignSkill('tooled_up')">
+                            <img id="prepared_for_the_worst" src="icons/brawn/prepared_for_the_worst.png" alt="prepared_for_the_worst" onclick="character.previewSkill('prepared_for_the_worst')" ondblclick="character.assignSkill('prepared_for_the_worst')">
+                            <img id="grizzled" src="icons/brawn/grizzled.png" alt="grizzled" onclick="character.previewSkill('grizzled')" ondblclick="character.assignSkill('grizzled')">
+                            <img id="unburdened" src="icons/brawn/unburdened.png" alt="unburdened" onclick="character.previewSkill('unburdened')" ondblclick="character.assignSkill('unburdened')">
+                        </div>
+                    </div>
+                    <div id="brawn3" class="row">
+                        <h3 class="heading locked">Tier 3</h3>
+                        <div class="content">
+                            <img id="heavy_takedown" src="icons/brawn/heavy_takedown.png" alt="heavy_takedown" onclick="character.previewSkill('heavy_takedown')" ondblclick="character.assignSkill('heavy_takedown')">
+                            <img id="badass" src="icons/brawn/badass.png" alt="badass" onclick="character.previewSkill('badass')" ondblclick="character.assignSkill('badass')">
+                            <img id="fleet_footed" src="icons/brawn/fleet_footed.png" alt="fleet_footed" onclick="character.previewSkill('fleet_footed')" ondblclick="character.assignSkill('fleet_footed')">
+                        </div>
+                    </div>
+                    <div id="brawn4" class="row">
+                        <h3 class="heading locked">Tier 4</h3>
+                        <div class="content">
+                            <img id="adrenaline_boost" src="icons/brawn/adrenaline_boost.png" alt="adrenaline_boost" onclick="character.previewSkill('adrenaline_boost')" ondblclick="character.assignSkill('adrenaline_boost')">
+                        </div>
+                    </div>
+                </div>
+                <div id="fighter" class="tabContent">
+                    <div id="fighter1" class="row">
+                        <h3 class="heading">Tier 1</h3>
+                        <div class="content">
+                            <img id="firestarter" src="icons/fighter/firestarter.png" alt="firestarter" onclick="character.previewSkill('firestarter')" ondblclick="character.assignSkill('firestarter')">
+                            <img id="spotter" src="icons/fighter/spotter.png" alt="spotter" onclick="character.previewSkill('spotter')" ondblclick="character.assignSkill('spotter')">
+                            <img id="quick_draw" src="icons/fighter/quick_draw.png" alt="quick_draw" onclick="character.previewSkill('quick_draw')" ondblclick="character.assignSkill('quick_draw')">
+                            <img id="spatial_awareness" src="icons/fighter/spatial_awareness.png" alt="spatial_awareness" onclick="character.previewSkill('spatial_awareness')" ondblclick="character.assignSkill('spatial_awareness')">
+                            <img id="deadeye" src="icons/fighter/deadeye.png" alt="deadeye" onclick="character.previewSkill('deadeye')" ondblclick="character.assignSkill('deadeye')">
+                        </div> 
+                    </div>
+                    <div id="fighter2" class="row">
+                        <h3 class="heading locked">Tier 2</h3>
+                        <div class="content">
+                            <img id="marksman" src="icons/fighter/marksman.png" alt="marksman" onclick="character.previewSkill('marksman')" ondblclick="character.assignSkill('marksman')">
+                            <img id="speed_loading" src="icons/fighter/speed_loading.png" alt="speed_loading" onclick="character.previewSkill('speed_loading')" ondblclick="character.assignSkill('speed_loading')">
+                            <img id="steady_aim" src="icons/fighter/steady_aim.png" alt="steady_aim" onclick="character.previewSkill('steady_aim')" ondblclick="character.assignSkill('steady_aim')">
+                            <img id="snapshot" src="icons/fighter/snapshot.png" alt="snapshot" onclick="character.previewSkill('snapshot')" ondblclick="character.assignSkill('snapshot')">
+                        </div>
+                    </div>
+                    <div id="fighter3" class="row">
+                        <h3 class="heading locked">Tier 3</h3>
+                        <div class="content">
+                            <img id="gunner" src="icons/fighter/gunner.png" alt="gunner" onclick="character.previewSkill('gunner')" ondblclick="character.assignSkill('gunner')">
+                            <img id="bullet_mule" src="icons/fighter/bullet_mule.png" alt="bullet_mule" onclick="character.previewSkill('bullet_mule')" ondblclick="character.assignSkill('bullet_mule')">
+                            <img id="auto_spotting" src="icons/fighter/auto_spotting.png" alt="auto_spotting" onclick="character.previewSkill('auto_spotting')" ondblclick="character.assignSkill('auto_spotting')">
+                        </div>
+                    </div>
+                    <div id="fighter4" class="row">
+                        <h3 class="heading locked">Tier 4</h3>
+                        <div class="content">
+                            <img id="munitions" src="icons/fighter/munitions.png" alt="munitions" onclick="character.previewSkill('munitions')" ondblclick="character.assignSkill('munitions')">
+                        </div>
+                    </div>
+                </div>
+                <div id="survivor" class="tabContent">
+                    <div id="survivor1" class="row">
+                        <h3 class="heading">Tier 1</h3>
+                        <div class="content">
+                            <img id="camouflage" src="icons/survivor/camouflage.png" alt="camouflage" onclick="character.previewSkill('camouflage')" ondblclick="character.assignSkill('camouflage')">
+                            <img id="ghost" src="icons/survivor/ghost.png" alt="ghost" onclick="character.previewSkill('ghost')" ondblclick="character.assignSkill('ghost')">
+                            <img id="illusionist" src="icons/survivor/illusionist.png" alt="illusionist" onclick="character.previewSkill('illusionist')" ondblclick="character.assignSkill('illusionist')">
+                            <img id="fast_aid" src="icons/survivor/fast_aid.png" alt="fast_aid" onclick="character.previewSkill('fast_aid')" ondblclick="character.assignSkill('fast_aid')">
+                            <img id="forager" src="icons/survivor/forager.png" alt="forager" onclick="character.previewSkill('forager')" ondblclick="character.assignSkill('forager')">
+                            <img id="strong_will" src="icons/survivor/strong_will.png" alt="strong_will" onclick="character.previewSkill('strong_will')" ondblclick="character.assignSkill('strong_will')">
+                        </div>
+                    </div>
+                    <div id="survivor2" class="row">
+                        <h3 class="heading locked">Tier 2</h3>
+                        <div class="content">
+                            <img id="resilience" src="icons/survivor/resilience.png" alt="resilience" onclick="character.previewSkill('resilience')" ondblclick="character.assignSkill('resilience')">
+                            <img id="light_footed" src="icons/survivor/light_footed.png" alt="light_footed" onclick="character.previewSkill('light_footed')" ondblclick="character.assignSkill('light_footed')">
+                            <img id="concealment" src="icons/survivor/concealment.png" alt="concealment" onclick="character.previewSkill('concealment')" ondblclick="character.assignSkill('concealment')">
+                            <img id="scavenger" src="icons/survivor/scavenger.png" alt="scavenger" onclick="character.previewSkill('scavenger')" ondblclick="character.assignSkill('scavenger')">
+                            <img id="combat_awareness" src="icons/survivor/combat_awareness.png" alt="combat_awareness" onclick="character.previewSkill('combat_awareness')" ondblclick="character.assignSkill('combat_awareness')">
+                        </div>
+                    </div>
+                    <div id="survivor3" class="row">
+                        <h3 class="heading locked">Tier 3</h3>
+                        <div class="content">
+                            <img id="glutton_for_punishment" src="icons/survivor/glutton_for_punishment.png" alt="glutton_for_punishment" onclick="character.previewSkill('glutton_for_punishment')" ondblclick="character.assignSkill('glutton_for_punishment')">
+                            <img id="pickpocket" src="icons/survivor/pickpocket.png" alt="pickpocket" onclick="character.previewSkill('pickpocket')" ondblclick="character.assignSkill('pickpocket')">
+                            <img id="autoinjector" src="icons/survivor/autoinjector.png" alt="autoinjector" onclick="character.previewSkill('autoinjector')" ondblclick="character.assignSkill('autoinjector')">
+                        </div>
+                    </div>
+                    <div id="survivor4" class="row">
+                        <h3 class="heading locked">Tier 4</h3>
+                        <div class="content">
+                            <img id="resourceful" src="icons/survivor/resourceful.png" alt="resourceful" onclick="character.previewSkill('resourceful')" ondblclick="character.assignSkill('resourceful')">
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <aside id="previewBackground">
+            <h1 id="previewBackgroundName"></h1>
+            <p id="previewBackgroundDescription"></p>
+            <h3>Background Skill:</h3>
+            <h1 id="previewBackgroundBackgroundName"></h1>
+            <img id="previewBackgroundImage">
+            <p id="previewBackgroundCategory"></p>
+            <p id="previewBackgroundBackgroundDescription"></p>
+            <p id="previewBackgroundBackgroundEffect"></p>
+        </aside>
+        <aside id="previewSkill">
+            <h1 id="previewSkillName"></h1>
+            <img id="previewSkillImage">
+            <p id="previewSkillDescription"></p>
+            <p id="previewSkillEffect"></p>
+        </aside>
+    </div>
+    <footer>
+        <section id="summary"></section>
+        <section id="totals"></section>
+    </footer>
+    <script>
+        const images = ['hf2_steam_1.jpg', 'hf2_steam_2.jpg', 'hf2_steam_3.jpg', 'hf2_steam_4.jpg', 'hf2_steam_5.jpg', 'hf2_steam_6.jpg', 'hf2_steam_7.jpg', 'hf2_steam_8.jpg', 'hf2_steam_9.jpg']
+        document.body.style.backgroundImage = `url(images/${images[Math.floor(Math.random() * images.length)]})`
+        document.getElementsByClassName('windowLink')[0].click()
+        $(window).on('load', function () {
+            $(".lds-wrapper").fadeOut("slow")
+        })
+    </script>
+</body>
+</html>
