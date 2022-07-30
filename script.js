@@ -34,10 +34,6 @@ class Character { // eslint-disable-line no-unused-vars
     newEffect = newEffect.trim()
     newCategory = newCategory.trim()
 
-    // Causes error as newEffect is currently blank
-    // if (!newName || !newDescription || !newEffect || !newCategory || newTier < 0) {
-    //   return
-    // }
     if (!Number.isInteger(newTier)) {
       return
     }
@@ -58,6 +54,7 @@ class Character { // eslint-disable-line no-unused-vars
     if (!newName || !newDescription || !newBackgroundName || !newBackgroundDescription) {
       return
     }
+
     const newBackground = new Background(newName, newDescription, newCategory, newBackgroundName, newBackgroundDescription, newBackgroundEffect)
     this.allBackgrounds.push(newBackground)
   }
@@ -77,23 +74,20 @@ class Character { // eslint-disable-line no-unused-vars
   }
 
   openWindow (event, windowName) { // eslint-disable-line no-unused-vars
-    let activeTab = document.getElementsByClassName("tab")[0].getElementsByClassName("active").length
-
-    // If Opens Brains tab of Skill Tree
-    if (windowName === 'skills' && activeTab === 0) {
+    // If no tab is open - open Brains tab of Skill Tree
+    if (windowName === 'skills' && document.getElementsByClassName("tab")[0].getElementsByClassName("active").length === 0) {
       document.getElementsByClassName('tabLink')[0].click()
     }
+
     let i
     const windowContent = document.getElementsByClassName('windowContent')[0].children
     for (i = 0; i < windowContent.length; i++) {
       if (windowContent[i].localName !== 'aside') {
-          console.log(windowContent[i])
           windowContent[i].style.display = 'none'
       }
     }
     const windowLinks = document.getElementsByClassName('windowLink')
     for (i = 0; i < windowLinks.length; i++) {
-      console.log(windowLinks[i])
       windowLinks[i].className = windowLinks[i].className.replace(' active', '')
     }
     document.getElementById(windowName).style -= 'display: none;'
@@ -187,7 +181,7 @@ class Character { // eslint-disable-line no-unused-vars
         character.currentSkills.push(targetEntry)
       }
     }
-    // If total character.currentSkills with targetEntry.category and skill.tier 1 is equal to or greater than 2 remove background, else add background
+    // If total character.currentSkills with targetEntry.category and skill.tier 1 is equal to or greater than 2 remove grey background, else add grey background
     const categoryHeading2 = document.getElementById(`${targetEntry.category}2`).getElementsByTagName('h3')[0]
     const categoryContent2 = document.getElementById(`${targetEntry.category}2`).getElementsByTagName('div')[0]
     if (character.currentSkills.filter(skill => skill.category === targetEntry.category).filter(skill => skill.tier === 1).reduce((acc, curr) => acc + curr.tier, 0) >= criteriaT2) {
@@ -219,8 +213,14 @@ class Character { // eslint-disable-line no-unused-vars
   }
 
   assignBackground (targetName) {
-    // set target background to character's currentBackground
-    character.currentBackground = character.allBackgrounds.find(skill => skill.name === targetName)
+    const categories = [...new Set(character.allSkills.map(skill => skill.category))]
+    const targetEntry = character.allBackgrounds.find(background => background.name === targetName)
+    character.currentBackground = character.allBackgrounds.find(background => background.name === targetName)
+    const criteriaT4 = (character.currentBackground.category === targetEntry.category || character.currentBackground.name === 'Videogame Developer') ? 9 : 10
+    const criteriaT3 = (character.currentBackground.category === targetEntry.category || character.currentBackground.name === 'Videogame Developer') ? 5 : 6
+    const criteriaT2 = (character.currentBackground.category === targetEntry.category || character.currentBackground.name === 'Videogame Developer') ? 1 : 2
+
+    console.log(targetEntry, criteriaT4, criteriaT3, criteriaT2)
 
     // If background class entries not null, remove all background entries.
     if (document.getElementsByClassName('background') !== null) {
@@ -229,12 +229,11 @@ class Character { // eslint-disable-line no-unused-vars
     // For each background...
     character.allBackgrounds.forEach(function (test) {
       // If background equal to character's current background set colour to red, otherwise none (which means white is inherited from css).
+
       if (test.name === character.currentBackground.name) {
         document.getElementById(test.name).style.color = 'rgb(180, 24, 7)'
-
-        // If current background category equal to null, ie all, for each category add background image, otherwise add singular background image.
+        // Current background category equal to null, ie all, for each category add background image, otherwise add singular background image.
         if (character.currentBackground.category === '') {
-          const categories = [...new Set(character.allSkills.map(skill => skill.category))]
           categories.forEach(function (category) {
             const location = document.getElementById(`${category}1`).getElementsByClassName('content')[0]
             const img = document.createElement('img')
@@ -259,20 +258,88 @@ class Character { // eslint-disable-line no-unused-vars
         document.getElementById(test.name).style.color = ''
       }
     })
+    // 
+    console.log(character.currentBackground.category)
+    if (character.currentBackground.category === '') {
+      console.log("1")
+      categories.forEach(function (category) {
+        console.log(category)
+        const categoryHeading2 = document.getElementById(`${category}2`).getElementsByTagName('h3')[0]
+        const categoryContent2 = document.getElementById(`${category}2`).getElementsByTagName('div')[0]
+        if (character.currentSkills.filter(skill => skill.category === category).filter(skill => skill.tier === 1).reduce((acc, curr) => acc + curr.tier, 0) >= criteriaT2) {
+          categoryHeading2.className = 'heading unlocked'
+          categoryContent2.style.backgroundColor = 'inherit'
+        } else {
+          categoryHeading2.className = 'heading locked'
+          categoryContent2.style.backgroundColor = 'rgba(79, 79, 79, 0.5)'
+        }
+        const categoryHeading3 = document.getElementById(`${category}3`).getElementsByTagName('h3')[0]
+        const categoryContent3 = document.getElementById(`${category}3`).getElementsByTagName('div')[0]
+        if (character.currentSkills.filter(skill => skill.category === category).filter(skill => skill.tier === 1 || skill.tier === 2).reduce((acc, curr) => acc + curr.tier, 0) >= criteriaT3) {
+          categoryHeading3.className = 'heading unlocked'
+          categoryContent3.style.backgroundColor = 'inherit'
+        } else {
+          categoryHeading3.className = 'heading locked'
+          categoryContent3.style.backgroundColor = 'rgba(79, 79, 79, 0.5)'
+        }
+        const categoryHeading4 = document.getElementById(`${category}4`).getElementsByTagName('h3')[0]
+        const categoryContent4 = document.getElementById(`${category}4`).getElementsByTagName('div')[0]
+        if (character.currentSkills.filter(skill => skill.category === category).filter(skill => skill.tier === 1 || skill.tier === 2 || skill.tier === 3).reduce((acc, curr) => acc + curr.tier, 0) >= criteriaT4) {
+          categoryHeading4.className = 'heading unlocked'
+          categoryContent4.style.backgroundColor = 'inherit'
+        } else {
+          categoryHeading4.className = 'heading locked'
+          categoryContent4.style.backgroundColor = 'rgba(79, 79, 79, 0.5)'
+        }
+      })
+    } else {
+      console.log("2")
+      const categoryHeading2 = document.getElementById(`${targetEntry.category}2`).getElementsByTagName('h3')[0]
+      const categoryContent2 = document.getElementById(`${targetEntry.category}2`).getElementsByTagName('div')[0]
+      if (character.currentSkills.filter(skill => skill.category === targetEntry.category).filter(skill => skill.tier === 1).reduce((acc, curr) => acc + curr.tier, 0) >= criteriaT2) {
+        categoryHeading2.className = 'heading unlocked'
+        categoryContent2.style.backgroundColor = 'inherit'
+      } else {
+        categoryHeading2.className = 'heading locked'
+        categoryContent2.style.backgroundColor = 'rgba(79, 79, 79, 0.5)'
+      }
+      const categoryHeading3 = document.getElementById(`${targetEntry.category}3`).getElementsByTagName('h3')[0]
+      const categoryContent3 = document.getElementById(`${targetEntry.category}3`).getElementsByTagName('div')[0]
+      if (character.currentSkills.filter(skill => skill.category === targetEntry.category).filter(skill => skill.tier === 1 || skill.tier === 2).reduce((acc, curr) => acc + curr.tier, 0) >= criteriaT3) {
+        categoryHeading3.className = 'heading unlocked'
+        categoryContent3.style.backgroundColor = 'inherit'
+      } else {
+        categoryHeading3.className = 'heading locked'
+        categoryContent3.style.backgroundColor = 'rgba(79, 79, 79, 0.5)'
+      }
+      const categoryHeading4 = document.getElementById(`${targetEntry.category}4`).getElementsByTagName('h3')[0]
+      const categoryContent4 = document.getElementById(`${targetEntry.category}4`).getElementsByTagName('div')[0]
+      if (character.currentSkills.filter(skill => skill.category === targetEntry.category).filter(skill => skill.tier === 1 || skill.tier === 2 || skill.tier === 3).reduce((acc, curr) => acc + curr.tier, 0) >= criteriaT4) {
+        categoryHeading4.className = 'heading unlocked'
+        categoryContent4.style.backgroundColor = 'inherit'
+      } else {
+        categoryHeading4.className = 'heading locked'
+        categoryContent4.style.backgroundColor = 'rgba(79, 79, 79, 0.5)'
+      }
+    }
     character.updateCharacter()
   }
-
   updateCharacter () {
+    // Calculating currentSkillPoints - equals total of all skill tiers, plus 1 unless currentBackground is blank or Student
     character.currentSkillPoints = (character.currentSkills.reduce((acc, curr) => acc + curr.tier, 0)) + ((character.currentBackground.length === 0 || character.currentBackground.name === 'Student') ? 0 : 1)
 
+    // delete summary table - if table exists
     if (document.querySelector('table') !== null) {
       document.querySelector('table').remove()
     }
 
+    // summary table declaration
     const table = document.createElement('table')
     const row = document.createElement('tr')
     const backgroundName = document.createElement('td')
     const backgroundEffect = document.createElement('td')
+
+    // add background to table
     backgroundName.appendChild(document.createTextNode((character.currentBackground.length === 0) ? 'No Background Selected'.toUpperCase() : character.currentBackground.name.toUpperCase().replace(/_/g, ' ')))
     backgroundEffect.appendChild(document.createTextNode(
       (character.currentBackground.length === 0) ? '' : ((character.currentBackground.backgroundEffect === '') ? character.currentBackground.backgroundDescription : character.currentBackground.backgroundEffect)
@@ -281,6 +348,7 @@ class Character { // eslint-disable-line no-unused-vars
     row.appendChild(backgroundEffect)
     table.appendChild(row)
 
+    // add skills to table
     character.currentSkills.forEach(skill => {
       const row = document.createElement('tr')
       const skillName = document.createElement('td')
@@ -291,22 +359,25 @@ class Character { // eslint-disable-line no-unused-vars
       row.appendChild(skillEffect)
       table.appendChild(row)
     })
+
+    // add table to summary section
     document.querySelector('#summary').appendChild(table)
 
+    // delete totals section
     const headings = [...document.getElementById('totals').getElementsByTagName('h1')]
-    headings.forEach((value, index) => { headings[index].remove() })
-
     const content = [...document.getElementById('totals').getElementsByTagName('p')]
+    headings.forEach((value, index) => { headings[index].remove() })
     content.forEach((value, index) => { content[index].remove() })
 
-    // console.log(content)
-
-    document.getElementById('totals')
+    // create 
+    // document.getElementById('totals')
+    
     const heading = document.createElement('h1')
-    const total = document.createElement('p')
     heading.appendChild(document.createTextNode('Progression'))
-    total.appendChild(document.createTextNode(`Assigned Skill Points: ${character.currentSkillPoints}/20`))
     document.querySelector('#totals').appendChild(heading)
+    
+    const total = document.createElement('p')
+    total.appendChild(document.createTextNode(`Assigned Skill Points: ${character.currentSkillPoints}/20`))
     document.querySelector('#totals').appendChild(total)
   }
 }

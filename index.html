@@ -15,7 +15,7 @@
         <div class="lds-dual-ring"></div>
     </div>
     <header>
-        <button class="windowLink" onclick="character.openWindow(event, 'backgrounds')" id="defaultOpen">Backgrounds</button>
+        <button class="windowLink" onclick="character.openWindow(event, 'backgrounds')">Backgrounds</button>
         <button class="windowLink" onclick="character.openWindow(event, 'skills')">Skills</button>
     </header>
     <div class="windowContent">
@@ -59,7 +59,7 @@
         <div id="skills">
             <main>
                 <div class="tab">
-                    <button class="tabLink" onclick="character.openSkill(event, 'brains')" id="defaultOpen">Brains</button>
+                    <button class="tabLink" onclick="character.openSkill(event, 'brains')">Brains</button>
                     <button class="tabLink" onclick="character.openSkill(event, 'brawn')">Brawn</button>
                     <button class="tabLink" onclick="character.openSkill(event, 'fighter')">Fighter</button>
                     <button class="tabLink" onclick="character.openSkill(event, 'survivor')">Survivor</button>
@@ -230,8 +230,13 @@
         <section id="totals"></section>
     </footer>
     <script>
-        const images = ['hf2_steam_1.jpg', 'hf2_steam_2.jpg', 'hf2_steam_3.jpg', 'hf2_steam_4.jpg', 'hf2_steam_5.jpg', 'hf2_steam_6.jpg', 'hf2_steam_7.jpg', 'hf2_steam_8.jpg', 'hf2_steam_9.jpg']
-        document.body.style.backgroundImage = `url(images/${images[Math.floor(Math.random() * images.length)]})`
+        const imageCount = 17
+        var randomFileNumber = Math.floor(Math.random() * imageCount) + 1
+        var fileName = 'url(images/hf2_steam_'.concat(randomFileNumber, '.jpg)')
+
+        // `url(images/hf2_steam_'${randomFileNumber}.jpg)`
+
+        document.body.style.backgroundImage = fileName
         document.getElementsByClassName('windowLink')[0].click()
         $(window).on('load', function () {
             $(".lds-wrapper").fadeOut("slow")
